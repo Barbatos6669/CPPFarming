@@ -2,7 +2,3 @@
 
 #include <iostream>
 
-class Production
-{
-
-};
