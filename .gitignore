@@ -1,0 +1,19 @@
+# Ignore build artifacts
+bin/
+build/
+*.exe
+*.o
+*.obj
+
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore temporary files
+*.tmp
+*.log
+*.bak
+*.swp
+
+# Ignore system files
+.DS_Store
+Thumbs.db
