@@ -7,19 +7,21 @@
 
 #include "City.h"
 
+using namespace std;
+
 class Player
 {
     public:
 
         // Attributes
-        std::string name; // Name of the player
+        string name; // Name of the player
         int gold; // Amount of gold the player has
 
         // Methods
         Player(string playerName); // Constructor
         ~Player(); // Destructor
 
-        // N
+        // Display player information
         void displayPlayerInfo(); // Display player information
 };
 
