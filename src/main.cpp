@@ -1,9 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <iomanip>
-
-
-
 #include "Player.h"
 #include "City.h"
 #include "GameManager.h"
@@ -20,5 +16,3 @@ int main()
     gameManager.startGame();
     return 0;
 }
-
-

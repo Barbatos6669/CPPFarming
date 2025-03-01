@@ -1,5 +1,5 @@
 #include <iostream>
-#include <Farm.h>
+#include "Farm.h"
 
 using namespace std;
 
@@ -8,11 +8,9 @@ Farm::Farm(string buildingName, int buildingCost, int buildingIncome, int buildi
 
 Farm::~Farm() {}
 
-void Farm::displayBuildingInfo()
+void Farm::displayBuildingInfo() const
 {
-    cout << "Building name: " << name << endl;
-    cout << "Cost: " << cost << endl;
-    cout << "Income: " << income << endl;
+    Building::displayBuildingInfo();
     cout << "Food production: " << foodProduction << endl;
     cout << "Level: " << lvl << endl;
 }
@@ -31,6 +29,3 @@ void Farm::harvest()
     cout << "Harvesting " << foodProduction << " food..." << endl;
     cout << "Food has been added to the city's resources." << endl;
 }
-
-
-

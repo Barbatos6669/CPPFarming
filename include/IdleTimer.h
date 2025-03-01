@@ -1,5 +1,4 @@
-#ifndef IDLE_TIMER_H
-#define IDLE_TIMER_H
+#pragma once
 
 #include <iostream>
 #include <chrono>
@@ -7,4 +6,3 @@
 
 
 
-#endif // IDLE_TIMER_H

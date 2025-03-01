@@ -1,8 +1,6 @@
 #include <iostream>
 #include <thread>
-
-#include <GameManager.h>
-
+#include "GameManager.h"
 
 using namespace std;
 
@@ -31,8 +29,8 @@ void GameManager::displayMenu()
 {
     cout << "Main Menu" << endl;
     cout << "1. Display Game Info" << endl;
-    cout << "2. Build Building" << endl;
-    cout << "3. Exit" << endl;
+    cout << "2. View Production info" << endl;
+    cout << "3" << endl;
 
     int choice;
     cout << "Enter your choice: ";
@@ -81,4 +79,3 @@ void GameManager::buildBuilding()
     // Add a building to the city
     city.addBuilding("Farm");
 }
-

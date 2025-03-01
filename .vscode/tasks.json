@@ -7,14 +7,22 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${workspaceFolder}/src/*.cpp",
+                "${workspaceFolder}/src/buildings/Building.cpp",
+                "${workspaceFolder}/src/buildings/Farm.cpp",
+                "${workspaceFolder}/src/core/Gamemanager.cpp",
+                "${workspaceFolder}/src/entities/city.cpp",
+                "${workspaceFolder}/src/entities/player.cpp",
+                "${workspaceFolder}/src/goods/resources.cpp",
+                "${workspaceFolder}/src/population/Population.cpp",
+                "${workspaceFolder}/src/technology/technology.cpp",
+                "${workspaceFolder}/src/main.cpp",                             
                 "-I",
                 "${workspaceFolder}/include",
                 "-o",
-                "${workspaceFolder}/main.exe"
+                "${workspaceFolder}/bin/main.exe"
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [
                 "$gcc"

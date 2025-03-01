@@ -1,15 +1,11 @@
-#ifndef GAME_MANAGER_H
-#define GAME_MANAGER_H
-
+#pragma once
 #include <iostream>
-
 #include "Player.h"
 #include "City.h"
 
 class GameManager
 {
     public:
-
         // Attributes
         Player player; // Player object
         City city; // City object
@@ -23,7 +19,4 @@ class GameManager
         void processMenuChoice(int choice); // Process the user's choice
         void displayGameInfo(); // Display the player and city information
         void buildBuilding(); // Build a building in the city
-
 };
-
-#endif // GAME_MANAGER_H

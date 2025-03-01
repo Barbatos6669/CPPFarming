@@ -1,4 +1,6 @@
-#include <Resources.h>
+#include "Resources.h"
+#include <iostream>
+using namespace std;
 
 Resources::Resources(string resourceName, int resourceAmount, int maxCap)
     : name(resourceName), amount(resourceAmount), maxCapacity(maxCap) {}
@@ -31,7 +33,7 @@ void Resources::remove(int value)
     }
 }
 
-void Resources::display()
+void Resources::display() const
 {
     cout << name << ": " << amount << "/" << maxCapacity << endl;
 }

@@ -1,28 +1,33 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#pragma once
 
 #include <iostream>
-#include <vector>
 #include <string>
 
-#include "City.h"
+class Player {
+private:
+    std::string name;  // Player's name    
+    int reputation;    // Player's reputation
+    int power;         // Player's power
 
-using namespace std;
+public:
+    // Constructor
+    Player(std::string playerName);
 
-class Player
-{
-    public:
+    // Destructor
+    ~Player();
 
-        // Attributes
-        string name; // Name of the player
-        int gold; // Amount of gold the player has
+    // Getters
+    std::string getName() const;
+    int getReputation() const;
+    int getPower() const;
 
-        // Methods
-        Player(string playerName); // Constructor
-        ~Player(); // Destructor
+    // Display functions
+    void displayPlayerInfo() const;
+    void displayLeaderStats() const;
 
-        // Display player information
-        void displayPlayerInfo(); // Display player information
+    // Methods to modify reputation & power
+    void increaseReputation(int value);
+    void increasePower(int value);
+    void decreaseReputation(int value);
+    void decreasePower(int value);
 };
-
-#endif // PLAYER_H

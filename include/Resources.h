@@ -1,27 +1,21 @@
-#ifndef RESOURCES_H
-#define RESOURCES_H
+#pragma once
 
-#include <iostream>
+#include <string>
 
 using namespace std;
 
 class Resources
 {
-    protected:
+    private:
         string name;
         int amount;
         int maxCapacity;
-        
+
     public:
-        Resources(string resourceName, int resourceAmount, int maxCap)
-            : name(resourceName), amount(resourceAmount), maxCapacity(maxCap) {}
-
-            virtual void add(int value) = 0;
-            virtual void remove(int value) = 0;
-            virtual void display() = 0;
-
-            int getAmount() const { return amount; }
-            int getMaxCapacity() const { return maxCapacity; }
+        Resources(string resourceName, int resourceAmount, int maxCap); // Declaration only
+        int getAmount() const;
+        int getMaxCapacity() const;
+        void add(int value);
+        void remove(int value);
+        void display() const;
 };
-
-#endif // RESOURCES_H
