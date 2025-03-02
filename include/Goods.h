@@ -1,6 +1,9 @@
 #pragma once
 
 #include <string>
+#include <iostream>
+
+#include <Market.h>
 
 using namespace std;
 
@@ -11,12 +14,14 @@ using namespace std;
  * The Goods class provides attributes to store the name, price, and quantity
  * of goods. It serves as a base class for more specific types of goods.
  */
-class Goods
+class Goods : public Market
 {
     protected:
         string name; ///< Name of the goods
         int price; ///< Price of the goods
         int quantity; ///< Quantity of the goods
+
+        
 
     public:
         /**

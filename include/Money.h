@@ -3,6 +3,9 @@
 #include <iostream>
 #include <string>
 
+#include "Budget.h"
+
+
 /**
  * @class Money
  * @brief A class representing money with a currency and amount.

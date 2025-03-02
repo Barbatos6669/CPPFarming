@@ -1,107 +1,48 @@
 #pragma once
-
 #include <iostream>
 
-/**
- * @class Population
- * @brief A class representing the population with various attributes and methods to manage it.
- * 
- * The Population class provides attributes to store the overall population, growth rate, birth rate,
- * death rate, employed population, and unemployed population. It also provides methods to display
- * population information and modify the population attributes.
- */
-class Population
-{
-    private:
-        int overallPopulation; ///< Overall population
-        int populationGrowthRate; ///< Population growth rate
-        int birthRate; ///< Birth rate
-        int deathRate; ///< Death rate
+class Population {
+private:
+    int totalPopulation; ///< Total population    
+    int birthRate; ///< Birth rate per 1000 people
+    int deathRate; ///< Death rate per 1000 people
+    float growthRate; ///< Growth rate in percentage (e.g., 1.5%)
 
-        int employedPopulation; ///< Employed population
-        int unemployedPopulation; ///< Unemployed population
+    int employedPopulation; ///< Number of employed people
+    int unemployedPopulation; ///< Number of unemployed people
 
-    public:
-        // Constructor
+    int grainPerPerson; ///< Grain consumption per person
 
-        /**
-         * @brief Constructor for the Population class.
-         * @param initialPopulation The initial overall population.
-         * @param growthRate The population growth rate.
-         * @param bRate The birth rate.
-         * @param dRate The death rate.
-         */
-        Population(int initialPopulation, int growthRate, int bRate, int dRate);
+public:
+    // Constructor
+    Population(int initialPopulation, float growthRate, int bRate, int dRate, int grain);
 
-        // Destructor
+    // Destructor
+    ~Population();
 
-        /**
-         * @brief Destructor for the Population class.
-         */
-        ~Population();
+    // Getters
+    int getTotalPopulation() const;
+    int getEmployedPopulation() const;
+    int getUnemployedPopulation() const;
+    int getTotalGrainConsumption() const;
 
-        // Getters
+    // Display functions
+    void displayPopulationInfo() const;
 
-        /**
-         * @brief Get the overall population.
-         * @return The overall population.
-         */
-        int getOverallPopulation() const;
+    // Population Modifiers (Increase & Decrease Combined)
+    void adjustPopulation(int value);
+    void adjustEmployedPopulation(int value);
+    void adjustUnemployedPopulation(int value);
 
-        /**
-         * @brief Get the employed population.
-         * @return The employed population.
-         */
-        int getEmployedPopulation() const;
+    // Population Growth Simulation
+    void updatePopulation();
 
-        /**
-         * @brief Get the unemployed population.
-         * @return The unemployed population.
-         */
-        int getUnemployedPopulation() const;
+    // Goods Consumption
+    void consumeGoods();
 
-        // Display functions
-
-        /**
-         * @brief Display information about the population.
-         */
-        void displayPopulationInfo() const;
-
-        // Methods to modify population
-
-        /**
-         * @brief Increase the overall population.
-         * @param value The amount to increase the population by.
-         */
-        void increasePopulation(int value);
-
-        /**
-         * @brief Decrease the overall population.
-         * @param value The amount to decrease the population by.
-         */
-        void decreasePopulation(int value);
-
-        /**
-         * @brief Increase the employed population.
-         * @param value The amount to increase the employed population by.
-         */
-        void increaseEmployedPopulation(int value);
-
-        /**
-         * @brief Decrease the employed population.
-         * @param value The amount to decrease the employed population by.
-         */
-        void decreaseEmployedPopulation(int value);
-
-        /**
-         * @brief Increase the unemployed population.
-         * @param value The amount to increase the unemployed population by.
-         */
-        void increaseUnemployedPopulation(int value);
-
-        /**
-         * @brief Decrease the unemployed population.
-         * @param value The amount to decrease the unemployed population by.
-         */
-        void decreaseUnemployedPopulation(int value);               
+    // Setters
+    void setGrainPerPerson(int value);
+    void setGrowthRate(float value);
+    void setBirthRate(int value);
+    void setDeathRate(int value);
 };

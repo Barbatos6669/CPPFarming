@@ -2,6 +2,12 @@
 #include <iostream>
 #include "Player.h"
 #include "City.h"
+#include "Population.h"
+#include "Budget.h"
+#include "Building.h"
+#include "Grain.h"
+#include "WheatFarm.h"
+
 
 /**
  * @class GameManager
@@ -16,6 +22,12 @@ class GameManager
         // Attributes
         Player player; ///< Player object
         City city; ///< City object
+        Population population; ///< Population object
+        Budget budget; ///< Budget object   
+        Building building; ///< Building object
+        Grain grain; ///< Grain object
+        WheatFarm wheatFarm; ///< WheatFarm object
+            
 
         // Methods
 
@@ -49,6 +61,12 @@ class GameManager
          * @brief Display the player and city information.
          */
         void displayGameInfo();
+
+        /**
+         * @brief One week simulation of the game.
+         *            
+        */
+        void simulateWeek();
 
         /**
          * @brief Build a building in the city.
