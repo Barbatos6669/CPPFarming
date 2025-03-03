@@ -1,10 +1,12 @@
-#include <iostream>
+
+#include "GameManager.h"
 
 using namespace std;
 
 // Entry point of the program
 int main() 
 {
-    cout << "Hello, World!" << endl;
+    GameManager gameManager;
+    gameManager.Run();
     return 0;
 }

@@ -7,6 +7,9 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
+                "${workspaceFolder}/src/GameManagement/GameManager.cpp",
+                "${workspaceFolder}/src/GameManagement/Player.cpp",
+                "${workspaceFolder}/src/GameManagement/City.cpp",
                 "${workspaceFolder}/src/main.cpp",                             
                 "-I",
                 "${workspaceFolder}/include",
