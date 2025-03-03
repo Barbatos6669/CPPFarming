@@ -6,7 +6,7 @@ Budget::Budget(std::string currencyType)
     // Initialize default tax rates
     taxes["IncomeTax"] = 0.1f;
     taxes["PollTax"] = 0.05f;
-    taxes["DividendsTax"] = 0.02f;
+    taxes["DividendsTax"] = 0.02f; //
     taxes["Tariffs"] = 0.03f;
     taxes["Minting"] = 0.00f;
 

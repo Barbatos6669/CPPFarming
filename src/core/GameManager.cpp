@@ -97,35 +97,78 @@ void GameManager::simulateWeek()
     // Update the budget
     budget.calculateBudget();
 
+    // Produce grain
+    wheatFarm.produce(grain);
+
+    // Consume goods
+    population.consumeGoods();
+
+    // Display the game information
+    displayGameInfo();
+
+    // Display the building information
+    wheatFarm.displayAll();
+
+    // Display the budget information
+    budget.displayBudgetReport();
+
+    // Display the city information
+    city.displayCityInfo();
+
+    // Display the population information
+    population.displayPopulationInfo();
+
+    // Display the player information
+    player.displayPlayerInfo();   
+
 }
 
-void GameManager::buildBuilding()
+void GameManager::buildmenu()
 {
     // Display the building menu
     cout << "Building Menu" << endl;
     cout << "1. Add Wheat Farm" << endl;
     cout << "2. Remove Wheat Farm" << endl;
     cout << "3. Display Wheat Farm Stats" << endl;
+    cout << "4. Exit" << endl;
 
     int choice;
     cout << "Enter your choice: ";
     cin >> choice;
 
+    processBuildingMenuChoice(choice);
+
+}
+
+void GameManager::processBuildingMenuChoice(int choice)
+{
     switch (choice)
     {
         case 1:
-            cout << "level up wheat farm" << endl;
+            wheatFarm.levelUp(); // Level up the WheatFarm building
             break;
         case 2:
-            cout << "level down wheat farm" << endl;
+            wheatFarm.levelDown(); // Level down the WheatFarm building
             break;
         case 3:
             wheatFarm.displayBuildingInfo(); // Display the stats of the WheatFarm building
             break;
+        case 4:
+            cout << "Exiting the building menu." << endl;
+            return;
         default:
             cout << "Invalid choice. Please try again." << endl;
     }
+}
 
+void GameManager::buildBuilding()
+{
+    // Display the building menu
+    buildmenu();
 
+    int choice;
+    cout << "Enter your choice: ";
+    cin >> choice;
 
+    processBuildingMenuChoice(choice);
 }

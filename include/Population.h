@@ -14,7 +14,10 @@ private:
     int grainPerPerson; ///< Grain consumption per person
 
 public:
-    // Constructor
+    // Default Constructor
+    Population();
+
+    // Parameterized Constructor
     Population(int initialPopulation, float growthRate, int bRate, int dRate, int grain);
 
     // Destructor

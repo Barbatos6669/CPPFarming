@@ -14,7 +14,13 @@ WheatFarm::~WheatFarm() {}
 // Getters
 int WheatFarm::getWorkersRequired() const { return workersRequired; }
 int WheatFarm::getWorkersEmployed() const { return workersEmployed; }
-float WheatFarm::getEfficiency() const { return efficiency; }
+float WheatFarm::getEfficiency() const 
+{ 
+    int workers = workersEmployed;
+    int required = workersRequired;
+    float efficiency = (workers / (float)required);
+    return efficiency; 
+}
 int WheatFarm::getProduction(const std::string& good) const { return production.at(good); }
 
 // Setters
@@ -36,3 +42,56 @@ void WheatFarm::displayBuildingInfo() const {
     std::cout << "   - Workers Required: " << workersRequired << " | Workers Employed: " << workersEmployed << "\n";
     std::cout << "   - Producing: " << production.at("Grain") << " Grain per cycle.\n";
 }
+
+void WheatFarm::displayProduction() const {
+    std::cout << "🌾 " << name << " Production Rates:\n";
+    std::cout << "   - Grain: " << production.at("Grain") << " per cycle.\n";
+}
+
+void WheatFarm::displayWorkers() const {
+    std::cout << "🌾 " << name << " Worker Information:\n";
+    std::cout << "   - Workers Required: " << workersRequired << " | Workers Employed: " << workersEmployed << "\n";
+}
+
+void WheatFarm::displayEfficiency() const {
+    std::cout << "🌾 " << name << " Efficiency:\n";
+    std::cout << "   - Efficiency: " << efficiency * 100 << "%\n";
+}
+
+void WheatFarm::displayAll() const {
+    displayBuildingInfo();
+    displayProduction();
+    displayWorkers();
+    displayEfficiency();
+}
+
+// Level Up
+void WheatFarm::levelUp() {
+    setBuildingLevel(getBuildingLevel() + 1);
+    workersRequired += 5; // Increase workers required
+    production["Grain"] += 30; // Increase grain production
+
+    // Subtract 5 unemployed workers from the population
+    workersEmployed += 5;
+    population.adjustUnemployedPopulation(-5);
+
+
+    std::cout << "🌾 " << name << " has been upgraded to Level " << getBuildingLevel() << "!\n";
+}
+
+void WheatFarm::levelDown() {
+    if (getBuildingLevel() > 1) {
+        setBuildingLevel(getBuildingLevel() - 1);
+        workersRequired -= 5; // Decrease workers required
+        production["Grain"] -= 10; // Decrease grain production
+
+        // Add 5 unemployed workers back to the population
+        workersEmployed -= 5;
+        population.adjustUnemployedPopulation(5);
+        
+        std::cout << "🌾 " << name << " has been downgraded to Level " << getBuildingLevel() << "!\n";
+    } else {
+        std::cout << "🌾 " << name << " is already at the lowest level!\n";
+    }
+}
+

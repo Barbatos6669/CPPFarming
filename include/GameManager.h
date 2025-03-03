@@ -69,7 +69,27 @@ class GameManager
         void simulateWeek();
 
         /**
+         * @brief Display the building menu.
+         */
+        void buildmenu();
+
+        /**
+         * @brief Process the user's building menu choice.
+         * @param choice The user's building menu choice.
+         */
+
+        void processBuildingMenuChoice(int choice);
+
+        /**
          * @brief Build a building in the city.
          */
+
         void buildBuilding();
+
+        /**
+         * @brief Display the building information.
+         */
+
+        void displayBuildingInfo();
+
 };

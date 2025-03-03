@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include "Building.h"
 #include "Grain.h"
+#include "Population.h"
 
 class WheatFarm : public Building {
 protected:
@@ -10,6 +11,8 @@ protected:
     int workersEmployed;
     float efficiency;
     std::unordered_map<std::string, int> production; ///< Stores production rates
+
+    Population population;
 
 public:
     // Constructor
@@ -35,4 +38,17 @@ public:
     
     // Display Info
     void displayBuildingInfo() const override;
+    void displayProduction() const;
+    void displayWorkers() const;
+    void displayEfficiency() const;
+    void displayAll() const;
+
+    // Level Up
+    void levelUp();
+    void levelDown();
+
+
+
+
+
 };
