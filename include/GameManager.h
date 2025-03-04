@@ -2,23 +2,30 @@
 
 #include <iostream>
 #include <string>
-#include "Player.h"
+#include "PlayerManager.h"
 
 using namespace std;
 
 class GameManager
 {
 private:
-    Player player;
+    PlayerManager* playerManager; // Pointer to the player manager
+
+    bool isRunning;
+    int choice;
+
 public:
     GameManager();
     ~GameManager();
 
-    void Run();    
+    void Run();
+    void StartGame();
+
+    void DisplayMenu();
+    void HandleInput();
     void Update();
     void Render();
-    void displayMenu();
-    void clearScreen();
-    void Exit();
+    void ClearScreen();
+    void ExitGame();
 };
 

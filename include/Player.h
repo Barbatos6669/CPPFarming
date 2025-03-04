@@ -1,26 +1,32 @@
 #pragma once
-
 #include <iostream>
 #include <string>
-#include "City.h"
+#include <vector>
+#include "CityManager.h"
+
 
 using namespace std;
 
 class Player
 {
     private:
-        string rulerName;
-        int reputation;   
-        
-        City city;
+        string name;
+        string password;
+        int fame;
 
+        CityManager* cityManager;
+        
     public:
-
-        Player();
+        Player(string name, string password);
         ~Player(); 
-        
-        void setRulerName(string name);
 
-        // Getters
-        string getRulerName() { return rulerName; }
+        // getters and setters
+        string getName() const;
+        void setName(string value);
+
+        string getPassword() const;
+        void setPassword(string value);
+
+
+
 };
