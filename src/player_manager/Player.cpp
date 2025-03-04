@@ -20,13 +20,8 @@ Player::~Player()
 
 // Run the player
 void Player::run()
-{
-    cout << "Player, "<< name << " is running" << endl;
-
-    while (true)
-    {
-        cityManager->run();
-    }
+{   
+    cityManager->run();
 }
 
 // Getter for name

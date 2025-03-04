@@ -13,6 +13,7 @@ class Player
         string name;
         string password;
         int fame;
+        bool isPlaying;
 
         CityManager* cityManager;
         

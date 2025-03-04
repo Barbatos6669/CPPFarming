@@ -7,6 +7,6 @@ using namespace std;
 int main() 
 {
     GameManager gameManager;
-    gameManager.Run();
+    gameManager.run();
     return 0;
 }

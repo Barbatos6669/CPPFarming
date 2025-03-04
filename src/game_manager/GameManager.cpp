@@ -7,6 +7,7 @@ using namespace std;
 GameManager::GameManager() {
     cout << "GameManager created" << endl;
     playerManager = new PlayerManager(); // allocate memory for the player manager
+    currentState = MAIN_MENU;
     isRunning = true;
 }
 
@@ -16,43 +17,49 @@ GameManager::~GameManager() {
     delete playerManager; // deallocate memory for the player manager
 }
 
-// Run the game
-void GameManager::Run() {
-    StartGame();
-    
-    while (isRunning) {
-        DisplayMenu();
-        HandleInput();
-        Update();
-        Render();
+// Run the game 
+void GameManager::run() 
+{
+    while (isRunning) 
+    {
+        switch (currentState) 
+        {
+            case MAIN_MENU:
+                displayMenu();
+                handleInput();
+                break;
+            case LOGIN_MENU:
+                playerManager->run();
+                currentState = MAIN_MENU; // Reset state after PlayerManager finishes
+                break;
+            case EXIT:
+                exitGame();
+                break;
+        }
     }
 }
 
-// Start the game
-void GameManager::StartGame() {
-    cout << "Game started" << endl;
-}
-
 // Display the main menu
-void GameManager::DisplayMenu() {
+void GameManager::displayMenu() 
+{
     cout << "Main Menu" << endl;
-    cout << "1. Start Game" << endl;
-    cout << "2. Exit Game" << endl;    
+    cout << "1. Login" << endl;
+    cout << "2. Exit" << endl;
 }
 
 // Handle user input
-void GameManager::HandleInput() {
+void GameManager::handleInput() 
+{
     cout << "Enter your choice: ";
     cin >> choice;
 
-    switch (choice) {
+    switch (choice) 
+    {
         case 1:
-            cout << "Starting game..." << endl;
-            playerManager->setIsLoginMenu(true);
-            playerManager->run();
+            currentState = LOGIN_MENU;
             break;
         case 2:
-            ExitGame();
+            currentState = EXIT;
             break;
         default:
             cout << "Invalid choice" << endl;
@@ -60,25 +67,10 @@ void GameManager::HandleInput() {
     }
 }
 
-// Update the game
-void GameManager::Update() {
-    // Update the player manager
-}
-
-// Render the game
-void GameManager::Render() {
-    // Render the player manager
-}
-
-// Clear the screen
-void GameManager::ClearScreen() {
-    // Clear the screen
-}
-
 // Exit the game
-void GameManager::ExitGame() {
+void GameManager::exitGame() 
+{
     isRunning = false;
-    cout << "Exiting game..." << endl;
 }
 
 

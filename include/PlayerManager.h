@@ -17,22 +17,28 @@ private:
     string playerName;
     string playerPassword;
 
+    enum PlayerManagerState
+    {
+        DISPLAY_MENU,
+        LOGIN,
+        CREATE_ACOUUNT,
+        DELETE_ACCOUNT,
+        LIST_PLAYERS,
+        RETURN_TO_GAME_MANAGER
+    };
+
 public:
     PlayerManager();
     ~PlayerManager();
 
+    PlayerManagerState currentState;
+
     void run();
+    void displayMenu();
+    void handleInput();
+
     void login();
     void createAccount();
     void deleteAccount();
-
-    void gameMenu();
-    void handleInput();
-    void returnToGameManager();
-    
-    // getters and setters
-    bool getIsLoginMenu() const;
-    void setIsLoginMenu(bool value);
-
-    
+    void listPlayers();       
 };

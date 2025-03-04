@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "BuildingManager.h"
 
 using namespace std;
 
@@ -11,25 +12,32 @@ class CityManager
         // Vector to store the cities
         string cityName;
         int population;
+        int workers;
+        int unemployed;
         int choice;
         bool isCityMenu;
         bool isBuildingMenu;
 
+        BuildingManager* buildingManager;
+
+        enum CityManagerState
+        {
+            DISPLAY_MENU,
+            BUILD_MENU,
+            RETURN_TO_PLAYER_MENU
+        };
+
     public:
+        // Constructor
         CityManager();
+
+        // Destructor
         ~CityManager();
 
-        void run();
-        void cityMenu();
-        void handleInput();
-        void buildingMenu();
-        void buildMenuInput();
-        
-        void returnToPlayer();
-        void returnToCityManager();
+        CityManagerState currentState;
 
-        bool getIsCityMenu() const;
-        void setIsCityMenu(bool value);
-        bool getIsBuildingMenu() const;
-        void setIsBuildingMenu(bool value);
+        // Run the city manager
+        void run();
+        void displayMenu();
+        void handleInput();       
 };

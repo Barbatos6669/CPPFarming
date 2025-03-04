@@ -14,18 +14,24 @@ private:
     bool isRunning;
     int choice;
 
+    enum GameManagerState
+    {
+        
+        LOGIN_MENU,
+        EXIT,
+        MAIN_MENU
+    };
+
 public:
     GameManager();
     ~GameManager();
 
-    void Run();
-    void StartGame();
+    GameManagerState currentState;
 
-    void DisplayMenu();
-    void HandleInput();
-    void Update();
-    void Render();
-    void ClearScreen();
-    void ExitGame();
+    void run();
+    void displayMenu();
+    void handleInput();
+    void exitGame();
+
 };
 

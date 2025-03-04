@@ -1,13 +1,16 @@
 #include "PlayerManager.h"
 
 // Constructor
-PlayerManager::PlayerManager() : isLoginMenu(true) {
+PlayerManager::PlayerManager() : isLoginMenu(true) 
+{
     cout << "PlayerManager created" << endl;
-    players.push_back(new Player("Player 1", "1234")); // Add a new player
+    players.push_back(new Player("Player 1", "1234")); // Add a new player    
+
 }
 
 // Destructor
-PlayerManager::~PlayerManager() {
+PlayerManager::~PlayerManager() 
+{
     cout << "PlayerManager destroyed" << endl;
     // Delete all the players
     for (Player* player : players) {
@@ -16,85 +19,75 @@ PlayerManager::~PlayerManager() {
 }
 
 // Run the player manager
-void PlayerManager::run() {
-    while (isLoginMenu) {
-        gameMenu();
-        handleInput();
-    }
-}
+void PlayerManager::run() 
+{
+    isLoginMenu = true;
+    currentState = DISPLAY_MENU;
 
-// Login to an account
-void PlayerManager::login() {
-    cout << "Login" << endl;
-
-    cout << "Enter your name: ";
-    cin >> playerName;
-    cout << "Enter your password: ";
-    cin >> playerPassword;
-
-    for (Player* player : players) {
-        if (player->getName() == playerName && player->getPassword() == playerPassword) {
-            cout << "Login successful, Welcome Back, " << playerName << endl;
-            player->run();
+    while (isLoginMenu) 
+    {
+        switch (currentState) 
+        {
+            case DISPLAY_MENU:
+                displayMenu();
+                handleInput();
+                break;
+            case LOGIN:
+                login();
+                break;
+            case CREATE_ACOUUNT:
+                createAccount();
+                break;
+            case DELETE_ACCOUNT:
+                deleteAccount();
+                break;
+            case LIST_PLAYERS:                
+                listPlayers();
+                break;
+            case RETURN_TO_GAME_MANAGER:
+                cout << "Returning to Game Manager..." << endl;
+                isLoginMenu = false;
+                break;
+            default:
+                cout << "Invalid choice" << endl;
+                break;
         }
     }
-
-    cout << "Login failed" << endl;
-
 }
 
-// Create a new account
-void PlayerManager::createAccount() {
-    cout << "Create Account" << endl;
-
-    cout << "Enter your name: ";
-    cin >> playerName;
-    cout << "Enter your password: ";
-    cin >> playerPassword;
-
-    players.push_back(new Player(playerName, playerPassword)); // Add a new player
-    cout << "Account created" << endl;
-}
-
-// Delete an account
-void PlayerManager::deleteAccount() {
-    cout << "Delete Account" << endl;
-}
-
-// Display the game menu
-void PlayerManager::gameMenu() {
-    cout << "Game Menu" << endl;
+// Display the player manager menu
+void PlayerManager::displayMenu() 
+{
+    cout << "Player Manager Menu" << endl;
     cout << "1. Login" << endl;
     cout << "2. Create Account" << endl;
     cout << "3. Delete Account" << endl;
     cout << "4. List Players" << endl;
-    cout << "5. Return to GameManager" << endl;
+    cout << "5. Return to Game Manager" << endl;
 }
 
 // Handle user input
-void PlayerManager::handleInput() {
+void PlayerManager::handleInput() 
+{
     cout << "Enter your choice: ";
     cin >> choice;
 
-    switch (choice) {
+    switch (choice) 
+    {
         case 1:
-            login();
+            currentState = LOGIN;
             break;
         case 2:
-            createAccount();
+            currentState = CREATE_ACOUUNT;
             break;
         case 3:
-            deleteAccount();
+            currentState = DELETE_ACCOUNT;
             break;
         case 4:
-            cout << "List Players" << endl;
-            for (Player* player : players) {
-                cout << player->getName() << endl;
-            }
+            currentState = LIST_PLAYERS;
             break;
         case 5:
-            cout << "Returning to GameManager..." << endl;
-            returnToGameManager();
+            currentState = RETURN_TO_GAME_MANAGER;
             break;
         default:
             cout << "Invalid choice" << endl;
@@ -102,19 +95,84 @@ void PlayerManager::handleInput() {
     }
 }
 
-// Return to the game manager
-void PlayerManager::returnToGameManager() {
-    isLoginMenu = false;
+// Login
+void PlayerManager::login() 
+{
+    cout << "Login Function" << endl;
+
+    // Get the player's name
+    cout << "Enter your name: ";
+    cin >> playerName;
+    // Get the player's password
+    cout << "Enter your password: ";
+    cin >> playerPassword;
+
+    // Find the player
+    for (Player* player : players) 
+    {
+        if (player->getName() == playerName && player->getPassword() == playerPassword) 
+        {
+            cout << "Login successful" << endl;
+            player->run();
+            return;
+        }
+    }
+
+    cout << "Login failed" << endl;
+    
 }
 
-// Getter for isLoginMenu
-bool PlayerManager::getIsLoginMenu() const {
-    return isLoginMenu;
+// Create account
+void PlayerManager::createAccount() 
+{
+    // Get the player's name
+    cout << "Enter your name: ";
+    cin >> playerName;
+    // Get the player's password
+    cout << "Enter your password: ";
+    cin >> playerPassword;
+
+    // Create a new player
+    players.push_back(new Player(playerName, playerPassword));
+    cout << "Account created" << endl;
 }
 
-// Setter for isLoginMenu
-void PlayerManager::setIsLoginMenu(bool value) {
-    isLoginMenu = value;
+// Delete account
+void PlayerManager::deleteAccount() 
+{
+    cout << "Delete Account Function" << endl;
+
+    // Get the player's name
+    cout << "Enter your name: ";
+    cin >> playerName;
+    // Get the player's password
+    cout << "Enter your password: ";
+    cin >> playerPassword;
+
+    // Find the player
+    for (int i = 0; i < players.size(); i++) 
+    {
+        if (players[i]->getName() == playerName && players[i]->getPassword() == playerPassword) 
+        {
+            cout << "Account deleted" << endl;
+            delete players[i];
+            players.erase(players.begin() + i);
+            return;
+        }
+    }
 }
 
-// Add a player to the player manager
+// List players
+void PlayerManager::listPlayers() 
+{
+    cout << "List of Players" << endl;
+    for (Player* player : players) 
+    {
+        cout << player->getName() << endl;
+    }
+
+}
+
+
+
+
