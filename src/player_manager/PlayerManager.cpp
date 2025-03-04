@@ -26,16 +26,16 @@ void PlayerManager::run() {
 // Login to an account
 void PlayerManager::login() {
     cout << "Login" << endl;
+
     cout << "Enter your name: ";
     cin >> playerName;
     cout << "Enter your password: ";
     cin >> playerPassword;
 
-    // Check if the player exists
     for (Player* player : players) {
         if (player->getName() == playerName && player->getPassword() == playerPassword) {
-            cout << "Login successful" << endl;
-            return;
+            cout << "Login successful, Welcome Back, " << playerName << endl;
+            player->run();
         }
     }
 
@@ -46,6 +46,14 @@ void PlayerManager::login() {
 // Create a new account
 void PlayerManager::createAccount() {
     cout << "Create Account" << endl;
+
+    cout << "Enter your name: ";
+    cin >> playerName;
+    cout << "Enter your password: ";
+    cin >> playerPassword;
+
+    players.push_back(new Player(playerName, playerPassword)); // Add a new player
+    cout << "Account created" << endl;
 }
 
 // Delete an account
@@ -59,7 +67,8 @@ void PlayerManager::gameMenu() {
     cout << "1. Login" << endl;
     cout << "2. Create Account" << endl;
     cout << "3. Delete Account" << endl;
-    cout << "4. Return to GameManager" << endl;
+    cout << "4. List Players" << endl;
+    cout << "5. Return to GameManager" << endl;
 }
 
 // Handle user input
@@ -78,6 +87,12 @@ void PlayerManager::handleInput() {
             deleteAccount();
             break;
         case 4:
+            cout << "List Players" << endl;
+            for (Player* player : players) {
+                cout << player->getName() << endl;
+            }
+            break;
+        case 5:
             cout << "Returning to GameManager..." << endl;
             returnToGameManager();
             break;

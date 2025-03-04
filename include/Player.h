@@ -20,6 +20,8 @@ class Player
         Player(string name, string password);
         ~Player(); 
 
+        void run();
+
         // getters and setters
         string getName() const;
         void setName(string value);

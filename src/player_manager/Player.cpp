@@ -8,7 +8,7 @@ using namespace std;
 // Constructor
 Player::Player(string name, string password) : name(name), password(password), fame(0)
 {
-    cout << "Player created" << endl;
+    cout << "Player created: " << name << endl;
     cityManager = new CityManager();
 }
 
@@ -16,6 +16,17 @@ Player::Player(string name, string password) : name(name), password(password), f
 Player::~Player()
 {
     delete cityManager;
+}
+
+// Run the player
+void Player::run()
+{
+    cout << "Player, "<< name << " is running" << endl;
+
+    while (true)
+    {
+        cityManager->run();
+    }
 }
 
 // Getter for name
